@@ -1,11 +1,12 @@
-clear all
+clear
 clc
 hold off
+% Ian Zabel
 
 D = 1.11; % Set D Constant for Calculation
 S = [];   % Blank Matrix to Fill With Sigma Values
 i = 0;    % Counter Initial Value
-K = S;   % Blank Matrix #2 to Fill With X Values
+K = S;    % Blank Matrix #2 to Fill With X Values
 j = [0.05:0.01:0.15];
 
 %% For Loop for Equal Interval Search and Polynomial Approximation
@@ -21,11 +22,10 @@ for x = 0.05:0.01:0.15
     sig2 = (1.11+1.11*(x2)^(-0.18))/(D - D*(x2)); % Iterated Stress
     x3   = x2 - 0.01;                             % Poly Iteration of x2
     sig3 = (1.11+1.11*(x3)^(-0.18))/(D - D*(x3)); % Poly Iteration of Stress
-    
     X    = [x,x2,x3];                             % Vector to Plot All Three Points
     SIG  = [sig,sig2,sig3];                       % Vector to Plot All Three Points
     Poly = polyfit(X,SIG,2);                      % Polyfit of Equal Interval Results
-    
+
     plot(x,sig,'b*')                              % Plots Each Point Calculated
     hold on; grid on
     
@@ -37,7 +37,6 @@ for x = 0.05:0.01:0.15
 end
 
 %% Figure 1 Equal Interval And Direct Function Plotting
-
 xlabel('d/D','fontsize',14)
 ylabel('Maximum Stress','fontsize',14)
 title('Maximum Stress Iterative Values (D = 1.11)','fontsize',16)
@@ -50,7 +49,6 @@ hold off
 
 A = linspace(x3,x,25);
 B = polyval(Poly,A);
-
 subplot(1,2,2)
 plot(X,SIG,'b*')
 xlabel('d/D','fontsize',14)
