@@ -1,17 +1,20 @@
-clear
-clc
-%  Ian Zabel
-%% Provided Parameters
-%  Objective Function: Minimize f(x1,x2)=(1-x1)^2+(2-x2)^2
+# Ian Zabel
+# Provided Parameters
+# Objective Function: Minimize f(x1,x2)=(1-x1)^2+(2-x2)^2
 
-Y = 5;     % Gamma:   Y > 1
-B = 0.8;   % Beta:    0 < B < 1
-E = 0.002; % Epsilon: Termination Parameter
-a = 3;     % Scale Factor a
-N = 2;     % Number of Variables N
+import math as m
+import numpy as np
 
-d1 = a*(sqrt(N+1)+N-1)/(N+1); % Delta 1
-d2 = a*(sqrt(N+1)-1)/(N+1);   % Delta 2
+Y = 5;     # Gamma:   [Y>1]
+B = 0.8;   # Beta:    [0<B<1]
+E = 0.002; # Epsilon: Termination Parameter
+a = 3;     # Scale Factor a
+N = 2;     # Number of Variables N
+K = N-1.   # Convenience
+J = N+1.   # Convenience
+
+d1 = a*(m.sqrt(J)+K)/J; # Delta 1
+d2 = a*(m.sqrt(J)-1.)/J;   # Delta 2
 
 f=[];x1n=[];x2n=[];c=0; % Empty Matrices and Counter Value
 
